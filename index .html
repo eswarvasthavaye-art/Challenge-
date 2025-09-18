@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Performance Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f9; }
+    header { background: #3f51b5; color: white; padding: 20px; text-align: center; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    h2 { margin: 0 0 10px; color: #3f51b5; }
+    canvas { width: 100% !important; height: 250px !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📊 Student Performance Dashboard</h1>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h2>Attendance Overview</h2>
+      <canvas id="attendanceChart"></canvas>
+    </div>
+    <div class="card">
+      <h2>Subject Marks</h2>
+      <canvas id="marksChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(attendanceCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Present', 'Absent'],
+        datasets: [{ data: [85, 15], backgroundColor: ['#4caf50', '#f44336'] }]
+      }
+    });
+
+    const marksCtx = document.getElementById('marksChart').getContext('2d');
+    new Chart(marksCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Math', 'Science', 'English', 'History', 'Geography'],
+        datasets: [{
+          label: 'Marks',
+          data: [88, 92, 76, 81, 95],
+          backgroundColor: '#3f51b5'
+        }]
+      },
+      options: { scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+  </script>
+</body>
+</html>
